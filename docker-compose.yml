@@ -12,15 +12,18 @@ services:
       - ./backend/:/usr/src/app
       - /usr/src/app/node_modules
     ports:
-      - "5000:5000"
+      - "8080:8080"
     depends_on:
       - mongo
     environment:
       - NODE_ENV=development
+      - MONGO_HOSTNAME=mongo
+      - MONGO_PORT=27017
+      - MONGO_DB=rick-morty-db
     networks:
       - app-network
   mongo:
-    image: mongo:latest
+    image: mongo
     volumes:
       - data-volume:/data/db
     ports:
