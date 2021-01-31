@@ -1,5 +1,9 @@
 FROM node:14.15.4
 
+ARG NODE_ENV=development
+
+# Create App Directory
+RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 COPY package*.json ./
@@ -10,4 +14,4 @@ RUN npm install
 
 EXPOSE 5000
 
-CMD [ "npm", "start" ]
+CMD [ "npm", "run", "dev" ]
