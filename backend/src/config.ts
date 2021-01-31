@@ -8,4 +8,5 @@ export default {
   MONGO_USER: process.env.MONGO_USER || 'admin',
   MONGO_PASSWORD: process.env.MONGO_PASSWORD || 'admin',
   PORT: process.env.PORT || 5000,
+  BASE_URL: process.env.BASE_URL || 'https://rickandmortyapi.com/api',
 }
