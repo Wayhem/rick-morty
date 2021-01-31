@@ -7,12 +7,9 @@ const { MONGO_DB, MONGO_HOSTNAME, MONGO_PORT } = config;
   try { 
     const mongooseOptions: ConnectionOptions = {
       useNewUrlParser: true,
-        useFindAndModify: false,
-        useCreateIndex: true,
-        useUnifiedTopology: true,
-        autoIndex: false,
-        poolSize: 10,
-        bufferMaxEntries: 0
+      useFindAndModify: false,
+      useCreateIndex: true,
+      useUnifiedTopology: true
     }
 
     const db = await mongoose.connect(`mongodb://${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}?authSource=admin`, mongooseOptions)

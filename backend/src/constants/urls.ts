@@ -1,7 +1,10 @@
 const urls = {
   Base: '/',
   Characters: '/character',
-  Identifier: '/:id'
+  Identifier: '/:id',
+  Signup: '/signup',
+  Signin: '/signin',
+  Profile: '/profile'
 }
 
 export default urls
