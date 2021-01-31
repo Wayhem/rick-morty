@@ -1,7 +1,8 @@
 import { Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
 import config from '../config'
-import User from '../models/User'
+import User, { User as UserI } from '../models/User'
+import { AUTH_TOKEN_KEY } from '../constants/authConstants'
 
 export const signup = async (req: Request, res: Response) => {
   try {
@@ -13,9 +14,11 @@ export const signup = async (req: Request, res: Response) => {
     user.password = await user.encryptPassword(user.password);
     const savedUser = await user.save()
     
-    const token = jwt.sign({ _id: savedUser._id }, config.SECRET_KEY)
+    const token = jwt.sign({ _id: savedUser._id }, config.SECRET_KEY, {
+      expiresIn: 60 * 60 * 48
+    })
 
-    res.header('auth-token', token).json(savedUser)
+    res.header(AUTH_TOKEN_KEY, token).json(savedUser)
 
   } catch(e) {
     res.status(400).send({
@@ -25,10 +28,21 @@ export const signup = async (req: Request, res: Response) => {
   }
 }
 
-export const signin = (req: Request, res: Response) => {
-  res.send('/signin')
+export const signin = async (req: Request, res: Response) => {
+  const user: UserI = await User.findOne({ email: req.body.email })
+  if (!user) return res.status(400).json('Email or password incorrect')
+  const isPasswordCorrect = await user.validatePassword(req.body.password)
+  if (!isPasswordCorrect) return res.status(400).json('password incorrect')
+
+  const token = jwt.sign({ _id: user._id }, config.SECRET_KEY, {
+    expiresIn: 60 * 60 * 48
+  })
+
+  res.header(AUTH_TOKEN_KEY, token).json(user)
 }
 
-export const profile = (req: Request, res: Response) => {
-  res.send('/profile')
+export const profile = async (req: Request, res: Response) => {
+  const user: UserI = await User.findOne({ _id: req.userId })
+  if (!user) res.status(404).json('User not found')
+  res.json(user)
 }
