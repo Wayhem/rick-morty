@@ -1,10 +1,11 @@
 import React from 'react'
-import { RecoilRoot } from 'recoil'
-import { ThemeProvider } from 'styled-components/macro'
+import { ThemeProvider } from 'styled-components'
 import { Router } from 'react-router-dom'
+import { Provider } from 'react-redux'
 import history from 'Config/history'
+import { store } from 'Store'
 import Routes from 'Components/System/routes'
-import { ErrorBoundary } from 'Components/atoms'
+import ErrorBoundary from 'Components/atoms/errorBoundary'
 import { GlobalStyle, theme } from 'Config/styled'
 
 // TODO: style error boundary
@@ -13,7 +14,7 @@ import { GlobalStyle, theme } from 'Config/styled'
 const App = () => (
   <>
     <GlobalStyle />
-    <RecoilRoot>
+    <Provider store={store}>
       <ThemeProvider theme={theme}>
         <ErrorBoundary fallback={<div>error</div>}>
           <Router history={history}>
@@ -21,7 +22,7 @@ const App = () => (
           </Router>
         </ErrorBoundary>
       </ThemeProvider>
-    </RecoilRoot>
+    </Provider>
   </>
 )
 

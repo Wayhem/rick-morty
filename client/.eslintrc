@@ -7,13 +7,18 @@
     "jest": true,
     "es6": true,
     "node": true
-},
-"plugins": [
-  "react"
-],
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "react",
+    "import",
+    "typescript"
+  ],
   "rules": {
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["off"],
     "semi": ["error", "never"],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }],
     "jsx-quotes": ["error", "prefer-single"],
     "max-len": ["error", { "ignoreComments": true, "code": 140 }],
     "react/jsx-one-expression-per-line": 0,
