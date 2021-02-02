@@ -12,15 +12,15 @@ export const fields = {
     placeholder: 'username',
     type: 'text',
     id: 'usernameInput',
-    required: true,
-    shift: positionShift.up
+    required: true
   },
   email: {
     label: 'Email',
     placeholder: 'email',
     type: 'email',
     id: 'emailInput',
-    required: true
+    required: true,
+    shift: positionShift.up
   },
   password: {
     label: 'Password',

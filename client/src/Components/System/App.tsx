@@ -7,7 +7,9 @@ import { store } from 'Store'
 import Routes from 'Components/System/routes'
 import ErrorBoundary from 'Components/atoms/errorBoundary'
 import { GlobalStyle, theme } from 'Config/styled'
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 
+// TODO: Erase error boundary if Suspense is not implemented
 // TODO: style error boundary
 // TODO: react-i18next
 

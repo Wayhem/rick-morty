@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useTheme } from 'styled-components'
+import Loader from 'react-loader-spinner'
 
 import TextInput from 'Components/atoms/TextInput'
 import {
@@ -10,21 +11,25 @@ import {
   Row,
   ClearButton,
   Form,
-  FormTypeButton
+  FormTypeButton,
+  FieldsContainer
 } from 'Components/organisms/LoginBox/styles'
 
 import { formTypes, fields } from 'Config/constants/formConstants'
+import { positionShift } from 'Config/constants/inputLabelShift'
 
 import { createUserAction, loginUserAction } from 'Store/actions/authActions'
+import { State } from 'Store/state'
 
 interface LoginField {
-  label: string,
-  placeholder: string,
-  id: string,
-  value: string,
-  type: string,
-  setValue: Function,
-  required?: boolean
+  label: string;
+  placeholder: string;
+  id: string;
+  value: string;
+  type: string;
+  setValue: Function;
+  shift?: positionShift;
+  required?: boolean;
 }
 
 const LoginBox = () => {
@@ -32,6 +37,8 @@ const LoginBox = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [formSelected, setFormSelected] = useState(formTypes.register)
+
+  const isPending = useSelector<State, boolean>((state: State) => state.auth.loginPagePending)
 
   const dispatch = useDispatch()
   const theme = useTheme()
@@ -79,7 +86,8 @@ const LoginBox = () => {
     value,
     type,
     setValue,
-    required
+    required,
+    shift
   }: LoginField) => (
     <InputContainer key={id}>
       <TextInput
@@ -90,6 +98,8 @@ const LoginBox = () => {
         type={type}
         onChange={e => setValue(e.target.value)}
         required={required}
+        labelShift={shift}
+        disabled={isPending}
       />
     </InputContainer>
   )
@@ -98,12 +108,22 @@ const LoginBox = () => {
     <>
       <Box>
         <Form onSubmit={handleSubmit} autoComplete='off'>
-          <div>
+          <FieldsContainer>
             {fieldsToRendered.map(field => renderField(field))}
-          </div>
+          </FieldsContainer>
           <Row>
             <ClearButton type='button' onClick={clearFields}>Clear</ClearButton>
-            <SubmitButton type='submit'>Submit</SubmitButton>
+            <SubmitButton type='submit'>
+              {isPending
+                ? (
+                  <Loader
+                    type='Circles'
+                    color={theme.colors.white}
+                    height={19}
+                    width={19}
+                  />
+                ) : 'Submit'}
+            </SubmitButton>
           </Row>
         </Form>
         <Row

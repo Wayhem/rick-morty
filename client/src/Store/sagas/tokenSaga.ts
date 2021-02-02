@@ -1,4 +1,5 @@
-import { call, put, takeEvery } from 'redux-saga/effects'
+import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
+import { get } from 'lodash'
 import { SimpleAction } from 'Store/actions'
 import authTypes from 'Store/types/authTypes'
 import * as Api from 'Services/api'
@@ -10,22 +11,24 @@ const TokenCall = () => new Promise((resolve) => {
 })
 
 export function* register(action: SimpleAction) {
-  const result = yield call(Api.SignUp, action.payload)
+  yield put({ type: authTypes.SIGNUP_PENDING })
 
-  if (result instanceof Error) {
-    yield put({ type: authTypes.SIGNUP_ERROR, payload: result.message })
-  } else {
+  try {
+    const result = yield call(Api.SignUp, action.payload)
     yield put({ type: authTypes.SIGNUP_SUCCESS, payload: result })
+  } catch (e) {
+    yield put({ type: authTypes.SIGNUP_ERROR, payload: e.message })
   }
 }
 
 export function* logIn(action: SimpleAction) {
-  const result = yield call(Api.SignIn, action.payload)
+  yield put({ type: authTypes.SIGNIN_PENDING })
 
-  if (result instanceof Error) {
-    yield put({ type: authTypes.SIGNIN_ERROR, payload: result.message })
-  } else {
+  try {
+    const result = yield call(Api.SignIn, action.payload)
     yield put({ type: authTypes.SIGNIN_SUCCESS, payload: result })
+  } catch (e) {
+    yield put({ type: authTypes.SIGNIN_ERROR, payload: e.message })
   }
 }
 
@@ -41,10 +44,21 @@ export function* getToken() {
   }
 }
 
+export function* authenticate(action: SimpleAction) {
+  const token = get(action, 'payload.headers.auth-token', '')
+
+  if (!token) {
+    yield put({ type: authTypes.TOKEN_ERROR, payload: 'Could not find token' })
+  } else {
+    yield put({ type: authTypes.TOKEN_SUCCESS, payload: token })
+  }
+}
+
 function* watchToken() {
   yield takeEvery(authTypes.GET_TOKEN, getToken)
   yield takeEvery(authTypes.SIGNUP, register)
   yield takeEvery(authTypes.SIGNIN, logIn)
+  yield takeLatest([authTypes.SIGNIN_SUCCESS, authTypes.SIGNUP_SUCCESS], authenticate)
 }
 
 export default watchToken

@@ -16,6 +16,11 @@ export const TextInput = styled.input<any>`
   transition: all 0.1s ease-out;
   font-family: ${props => props.theme.font};
 
+  &:disabled {
+    cursor: not-allowed;
+    background-color: lightgray;
+  }
+
   &:focus {
     padding: 10px;
     transition: all 0.3s ease-out;

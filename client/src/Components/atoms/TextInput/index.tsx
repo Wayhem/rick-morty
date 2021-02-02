@@ -10,10 +10,11 @@ interface InputProps {
   labelShift?: positionShift;
   type?: string;
   required?: boolean | undefined;
+  disabled?: boolean | undefined;
   onChange(e: any): void;
 }
 
-const Input = ({ onChange, placeholder, label, inputId, value, labelShift, type, required }: InputProps) => {
+const Input = ({ onChange, placeholder, label, inputId, value, labelShift, type, required, disabled }: InputProps) => {
   const getCoordinates = (position: positionShift | undefined): { coordinateX: string; coordinateY: string } => {
     switch (position) {
       case positionShift.up:
@@ -40,6 +41,7 @@ const Input = ({ onChange, placeholder, label, inputId, value, labelShift, type,
         coordinateX={coordinateX}
         coordinateY={coordinateY}
         required={required}
+        disabled={disabled}
       />
       <label htmlFor={inputId}>{label}</label>
     </TextInputContainer>
@@ -49,7 +51,8 @@ const Input = ({ onChange, placeholder, label, inputId, value, labelShift, type,
 Input.defaultProps = {
   labelShift: positionShift.left,
   type: 'text',
-  required: undefined
+  required: undefined,
+  disabled: undefined
 }
 
 export default Input

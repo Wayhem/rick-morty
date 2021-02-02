@@ -91,3 +91,7 @@ export const FormTypeButton = styled.div<any>`
     background-color: ${props => props.theme.colors.white};
   }
 `
+
+export const FieldsContainer = styled.div`
+  min-height: 136px;
+`
