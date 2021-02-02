@@ -2,12 +2,26 @@
 import { createGlobalStyle } from 'styled-components'
 import colors from 'Assets/colors'
 
+declare module 'styled-components' {
+  export interface DefaultTheme {
+    colors: {
+      darkBlue: string;
+      transpBlack: string;
+      black: string;
+      gray: string;
+      orange: string;
+      white: string;
+    };
+    font: string;
+  }
+}
+
 export const GlobalStyle = createGlobalStyle`
   body {
     background-color: white;
     padding:0;
     margin:0;
-    font-family: Inter;
+    font-family: 'Roboto', sans-serif;
     background-color: ${colors.darkBlue};
   }
 
@@ -27,5 +41,5 @@ input,label,select,button,textarea{margin:0;border:0;padding:0;display:inline-bl
 
 export const theme = {
   colors,
-  font: 'Montserrat'
+  font: 'Roboto'
 }

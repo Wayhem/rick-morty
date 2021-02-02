@@ -14,6 +14,7 @@ export const TextInput = styled.input<any>`
   border-radius: 3px;
   padding: 10px 10px 10px 100px;
   transition: all 0.1s ease-out;
+  font-family: ${props => props.theme.font};
 
   &:focus {
     padding: 10px;
@@ -36,6 +37,7 @@ export const TextInput = styled.input<any>`
     transition: all 0.3s ease-in;
     transition-delay: 0.2s;
     text-align: center;
+    font-family: ${props => props.theme.font};
   }
 
   &:focus + label {

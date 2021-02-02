@@ -13,9 +13,19 @@ export function* register(action: SimpleAction) {
   const result = yield call(Api.SignUp, action.payload)
 
   if (result instanceof Error) {
-    yield put({ type: authTypes.SIGNUP_ERROR, payload: 'Error loading payload' })
+    yield put({ type: authTypes.SIGNUP_ERROR, payload: result.message })
   } else {
     yield put({ type: authTypes.SIGNUP_SUCCESS, payload: result })
+  }
+}
+
+export function* logIn(action: SimpleAction) {
+  const result = yield call(Api.SignIn, action.payload)
+
+  if (result instanceof Error) {
+    yield put({ type: authTypes.SIGNIN_ERROR, payload: result.message })
+  } else {
+    yield put({ type: authTypes.SIGNIN_SUCCESS, payload: result })
   }
 }
 
@@ -25,7 +35,7 @@ export function* getToken() {
   const result = yield call(TokenCall)
 
   if (result instanceof Error) {
-    yield put({ type: authTypes.TOKEN_ERROR, payload: 'Error loading payload' })
+    yield put({ type: authTypes.TOKEN_ERROR, payload: result.message })
   } else {
     yield put({ type: authTypes.TOKEN_SUCCESS, payload: result })
   }
@@ -34,6 +44,7 @@ export function* getToken() {
 function* watchToken() {
   yield takeEvery(authTypes.GET_TOKEN, getToken)
   yield takeEvery(authTypes.SIGNUP, register)
+  yield takeEvery(authTypes.SIGNIN, logIn)
 }
 
 export default watchToken
