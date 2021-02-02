@@ -1,9 +1,9 @@
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
-import { Router } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import history from 'Config/history'
-import { store } from 'Store'
+import { PersistGate } from 'redux-persist/integration/react'
+import { store, persistor } from 'Store'
 import Routes from 'Components/System/routes'
 import ErrorBoundary from 'Components/atoms/errorBoundary'
 import { GlobalStyle, theme } from 'Config/styled'
@@ -17,13 +17,15 @@ const App = () => (
   <>
     <GlobalStyle />
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <ErrorBoundary fallback={<div>error</div>}>
-          <Router history={history}>
-            <Routes />
-          </Router>
-        </ErrorBoundary>
-      </ThemeProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <ThemeProvider theme={theme}>
+          <ErrorBoundary fallback={<div>error</div>}>
+            <Router>
+              <Routes />
+            </Router>
+          </ErrorBoundary>
+        </ThemeProvider>
+      </PersistGate>
     </Provider>
   </>
 )

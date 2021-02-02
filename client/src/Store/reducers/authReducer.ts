@@ -1,20 +1,22 @@
-import { SimpleAction } from 'Store/actions'
+import { AnyAction } from 'redux'
 import authTypes from 'Store/types/authTypes'
 
 export interface AuthState {
   token: string;
-  loginPagePending: boolean
+  loginPagePending: boolean;
+  isLoggedIn: boolean;
 }
 
 const initialState: AuthState = {
   token: '',
-  loginPagePending: false
+  loginPagePending: false,
+  isLoggedIn: false
 }
 
-const reducer = (state = initialState, action: SimpleAction) => {
+const reducer = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case authTypes.TOKEN_SUCCESS:
-      return { ...state, token: action.payload, loginPagePending: false }
+      return { ...state, token: action.payload, loginPagePending: false, isLoggedIn: true }
     case authTypes.TOKEN_PENDING:
     case authTypes.SIGNIN_PENDING:
     case authTypes.SIGNUP_PENDING:
@@ -25,7 +27,7 @@ const reducer = (state = initialState, action: SimpleAction) => {
     case authTypes.SIGNIN_ERROR:
     case authTypes.SIGNUP_ERROR:
     case authTypes.TOKEN_ERROR:
-      return { ...state, loginPagePending: false }
+      return { ...state, loginPagePending: false, isLoggedIn: false }
     default:
       return state
   }

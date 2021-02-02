@@ -1,15 +1,22 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { applyMiddleware, compose, createStore, Store } from 'redux'
+import { applyMiddleware, compose, createStore } from 'redux'
 import createSagaMiddleware from 'redux-saga'
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
 import reducer from 'Store/reducers/reducer'
-import { State } from 'Store/state'
 import rootSaga from 'Store/sagas'
 
 declare global {
   interface Window {
     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
   }
+}
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['auth']
 }
 
 const sagaMiddleware = createSagaMiddleware()
@@ -20,9 +27,19 @@ const middlewares = [
   sagaMiddleware
 ]
 
-export const store = createStore(
-  reducer,
-  composeEnhancers(applyMiddleware(...middlewares))
-)
+const persistedReducer = persistReducer(persistConfig, reducer)
+
+const getStore = () => {
+  const store = createStore(
+    persistedReducer,
+    composeEnhancers(applyMiddleware(...middlewares))
+  )
+  const persistor = persistStore(store)
+  return { store, persistor }
+}
+
+const { store, persistor } = getStore()
 
 sagaMiddleware.run(rootSaga)
+
+export { store, persistor }

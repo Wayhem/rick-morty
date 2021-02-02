@@ -1,6 +1,9 @@
 import React, { Suspense } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch } from 'react-router-dom'
 import routes from 'Config/routes'
+import PrivateRoute from 'Components/System/routes/PrivatedRoute'
+import LoginRoute from 'Components/System/routes/LoginRoute'
+import Login from 'Components/pages/login'
 import Home from 'Components/pages/home'
 import HomeSkeleton from 'Components/pages/homeSkeleton'
 
@@ -8,7 +11,12 @@ const Routes = () => (
   <>
     <Switch>
       <Suspense fallback={<HomeSkeleton />}>
-        <Route path={routes.home} component={Home} />
+        <LoginRoute path={routes.login} exact>
+          <Login />
+        </LoginRoute>
+        <PrivateRoute path={routes.home} exact>
+          <Home />
+        </PrivateRoute>
       </Suspense>
     </Switch>
   </>
