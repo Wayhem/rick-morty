@@ -8,6 +8,7 @@ export const GlobalStyle = createGlobalStyle`
     padding:0;
     margin:0;
     font-family: Inter;
+    background-color: ${colors.darkBlue};
   }
 
 /* Normalize */
@@ -26,4 +27,5 @@ input,label,select,button,textarea{margin:0;border:0;padding:0;display:inline-bl
 
 export const theme = {
   colors,
+  font: 'Montserrat'
 }

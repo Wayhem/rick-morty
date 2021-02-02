@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { applyMiddleware, compose, createStore, Store } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 
@@ -20,7 +20,7 @@ const middlewares = [
   sagaMiddleware
 ]
 
-export const store: Store<State> = createStore(
+export const store = createStore(
   reducer,
   composeEnhancers(applyMiddleware(...middlewares))
 )
