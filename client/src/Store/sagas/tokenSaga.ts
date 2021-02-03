@@ -1,14 +1,8 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
+import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects'
 import { get } from 'lodash'
 import { SimpleAction } from 'Store/actions'
 import authTypes from 'Store/types/authTypes'
 import * as Api from 'Services/api'
-
-const TokenCall = () => new Promise((resolve) => {
-  setTimeout(() => {
-    resolve('Soon token will be called')
-  }, 250)
-})
 
 export function* register(action: SimpleAction) {
   yield put({ type: authTypes.SIGNUP_PENDING })
@@ -32,15 +26,19 @@ export function* logIn(action: SimpleAction) {
   }
 }
 
-export function* getToken() {
-  yield put({ type: authTypes.TOKEN_PENDING })
+export function* getProfile() {
+  const state = yield select()
+  const { token } = state.auth
 
-  const result = yield call(TokenCall)
+  if (token) {
+    yield put({ type: authTypes.TOKEN_PENDING })
 
-  if (result instanceof Error) {
-    yield put({ type: authTypes.TOKEN_ERROR, payload: result.message })
-  } else {
-    yield put({ type: authTypes.TOKEN_SUCCESS, payload: result })
+    try {
+      const result = yield call(Api.Profile)
+      yield put({ type: authTypes.PROFILE_SUCCESS, payload: result })
+    } catch (e) {
+      yield put({ type: authTypes.TOKEN_ERROR, payload: e.message })
+    }
   }
 }
 
@@ -55,10 +53,11 @@ export function* authenticate(action: SimpleAction) {
 }
 
 function* watchToken() {
-  yield takeEvery(authTypes.GET_TOKEN, getToken)
+  yield takeEvery(authTypes.GET_TOKEN, getProfile)
   yield takeEvery(authTypes.SIGNUP, register)
   yield takeEvery(authTypes.SIGNIN, logIn)
-  yield takeLatest([authTypes.SIGNIN_SUCCESS, authTypes.SIGNUP_SUCCESS], authenticate)
+  yield takeLatest(authTypes.GET_PROFILE, getProfile)
+  yield takeLatest([authTypes.SIGNIN_SUCCESS, authTypes.SIGNUP_SUCCESS, authTypes.PROFILE_SUCCESS], authenticate)
 }
 
 export default watchToken

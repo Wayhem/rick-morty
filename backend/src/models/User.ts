@@ -5,6 +5,7 @@ export interface User extends Document {
   username: string;
   email: string;
   password: string;
+  favoritesIds: [Number];
   encryptPassword(password: string): Promise<string>;
   validatePassword(password: string): Promise<boolean>;
 }

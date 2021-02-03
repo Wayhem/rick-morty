@@ -27,7 +27,7 @@ const reducer = (state = initialState, action: AnyAction) => {
     case authTypes.SIGNIN_ERROR:
     case authTypes.SIGNUP_ERROR:
     case authTypes.TOKEN_ERROR:
-      return { ...state, loginPagePending: false, isLoggedIn: false }
+      return { ...state, loginPagePending: false, isLoggedIn: false, token: '' }
     default:
       return state
   }

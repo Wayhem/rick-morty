@@ -18,7 +18,19 @@ export const signup = async (req: Request, res: Response) => {
       expiresIn: 60 * 60 * 48
     })
 
-    res.header(AUTH_TOKEN_KEY, token).json(savedUser)
+    const {
+      favoritesIds,
+      _id,
+      username,
+      email,
+    } = savedUser
+
+    res.header(AUTH_TOKEN_KEY, token).json({
+      favoritesIds,
+      _id,
+      username,
+      email,
+    })
 
   } catch(e) {
     res.status(400).send({
@@ -38,11 +50,38 @@ export const signin = async (req: Request, res: Response) => {
     expiresIn: 60 * 60 * 48
   })
 
-  res.header(AUTH_TOKEN_KEY, token).json(user)
+  const {
+    favoritesIds,
+    _id,
+    username,
+    email,
+  } = user
+
+  res.header(AUTH_TOKEN_KEY, token).json({
+    favoritesIds,
+    _id,
+    username,
+    email,
+  })
 }
 
 export const profile = async (req: Request, res: Response) => {
   const user: UserI = await User.findOne({ _id: req.userId })
   if (!user) res.status(404).json('User not found')
-  res.json(user)
+  const token = jwt.sign({ _id: user._id }, config.SECRET_KEY, {
+    expiresIn: 60 * 60 * 48
+  })
+  const {
+    favoritesIds,
+    _id,
+    username,
+    email,
+  } = user
+
+  res.header(AUTH_TOKEN_KEY, token).json({
+    favoritesIds,
+    _id,
+    username,
+    email,
+  })
 }
