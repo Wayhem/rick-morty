@@ -1,11 +1,12 @@
 import React, { Suspense, useEffect } from 'react'
-import { Switch } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import routes from 'Config/routes'
 import PrivateRoute from 'Components/System/routes/PrivatedRoute'
 import LoginRoute from 'Components/System/routes/LoginRoute'
 import Login from 'Components/pages/login'
 import Home from 'Components/pages/home'
+import NotFound from 'Components/pages/404'
 import HomeSkeleton from 'Components/pages/homeSkeleton'
 import { State } from 'Store/state'
 import { simpleActionCreator } from 'Store/actions'
@@ -17,23 +18,24 @@ const Routes = () => {
   const token = useSelector<State, string>((state: State) => state.auth.token)
 
   useEffect(() => {
-    setHeaderToken(token)
-    dispatch(simpleActionCreator(authTypes.GET_PROFILE))
+    if (token) {
+      setHeaderToken(token)
+      dispatch(simpleActionCreator(authTypes.GET_PROFILE))
+    }
   }, [token, dispatch])
 
   return (
-    <>
+    <Suspense fallback={<HomeSkeleton />}>
       <Switch>
-        <Suspense fallback={<HomeSkeleton />}>
-          <LoginRoute path={routes.login} exact>
-            <Login />
-          </LoginRoute>
-          <PrivateRoute path={routes.home} exact>
-            <Home />
-          </PrivateRoute>
-        </Suspense>
+        <LoginRoute path={routes.login} exact>
+          <Login />
+        </LoginRoute>
+        <PrivateRoute path={routes.home} exact>
+          <Home />
+        </PrivateRoute>
+        <Route component={NotFound} />
       </Switch>
-    </>
+    </Suspense>
   )
 }
 

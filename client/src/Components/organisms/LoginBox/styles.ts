@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import OutlinedButton from 'Components/atoms/outlinedButton'
+import StandardButton from 'Components/atoms/standardButton'
 
 export const Box = styled.div`
   border: 1px solid ${props => props.theme.colors.gray};
@@ -9,54 +11,25 @@ export const Box = styled.div`
   align-items: center;
   justify-content: center;
   background-color: ${props => props.theme.colors.white};
+  max-width: 700px;
+  width: 50%;
+
+  @media (max-width: 1024px) {
+    width: 70%;
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
 `
 
 export const InputContainer = styled.div`
   margin: 8px 0;
 `
 
-export const SubmitButton = styled.button`
-  padding: 12px;
-  color: ${props => props.theme.colors.white};
-  border-radius: 3px;
-  background: ${props => props.theme.colors.orange};
-  transition: all 0.2s ease-in;
-  text-align: center;
-  box-shadow: 1px 1px 2px 2px ${props => props.theme.colors.transpBlack};
-  font-size: 1.1rem;
-  cursor: pointer;
+export const SubmitButton = styled(StandardButton)``
 
-  &:hover {
-    box-shadow: 3px 3px 3px 3px ${props => props.theme.colors.transpBlack};
-    transform: translateY(-3px);
-  }
-
-  &:active {
-    box-shadow: 0px 1px 2px 2px ${props => props.theme.colors.transpBlack};
-    transform: translateY(1px);
-  }
-`
-
-export const ClearButton = styled.button`
-  padding: 12px;
-  color: ${props => props.theme.colors.orange};
-  border-radius: 3px;
-  background: ${props => props.theme.colors.white};
-  border: 1px solid ${props => props.theme.colors.orange};
-  transition: all 0.2s ease-in;
-  text-align: center;
-  font-size: 1.1rem;
-  cursor: pointer;
-
-  &:hover {
-    background: ${props => props.theme.colors.orange};
-    color: ${props => props.theme.colors.white};
-  }
-
-  &:active {
-    transform: translateY(-1px);
-  }
-`
+export const ClearButton = styled(OutlinedButton)``
 
 export const Row = styled.div<any>`
   display: flex;
@@ -68,6 +41,7 @@ export const Row = styled.div<any>`
 `
 export const Form = styled.form`
   padding: 1rem;
+  width: 100%;
 `
 
 export const FormTypeButton = styled.div<any>`

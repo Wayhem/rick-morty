@@ -44,11 +44,13 @@ export function* getProfile() {
 
 export function* authenticate(action: SimpleAction) {
   const token = get(action, 'payload.headers.auth-token', '')
+  const username = get(action, 'payload.data.username', '')
+  const email = get(action, 'payload.data.email', '')
 
   if (!token) {
     yield put({ type: authTypes.TOKEN_ERROR, payload: 'Could not find token' })
   } else {
-    yield put({ type: authTypes.TOKEN_SUCCESS, payload: token })
+    yield put({ type: authTypes.TOKEN_SUCCESS, payload: { token, email, username } })
   }
 }
 

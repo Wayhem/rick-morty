@@ -1,9 +1,10 @@
 import React from 'react'
+import Navbar from 'Components/organisms/NavBar'
 
 const Home = () => (
-  <div>
-    homee
-  </div>
+  <>
+    <Navbar />
+  </>
 )
 
 export default Home

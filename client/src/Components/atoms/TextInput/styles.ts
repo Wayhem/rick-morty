@@ -6,7 +6,7 @@ export const TextInputContainer = styled.div`
 
 export const TextInput = styled.input<any>`
   display: inline-block;
-  width: 500px;
+  width: 100%;
   height: 40px;
   box-sizing: border-box;
   outline: none;
