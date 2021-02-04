@@ -20,8 +20,8 @@ Each folder has a readme with more details on what is being used and why is bein
 
 - Style error boundary and pages skeletons
 - i18n
-- unit testing for controllers
-- client eslint initially configured without typescript, might be needed to reconfigure with tslint (airbnb if possible)
+- unit testing for controllers adn routes
 - E2E testing once workflows are defined
 - Implement things done for Characters, for Episodes and Locations
 - CircleCI jobs config ymls
+- Adequate docker-compose for Prod release

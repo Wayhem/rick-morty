@@ -1,26 +1,20 @@
-# Gnome App
+# Client Rick-Morty
 
 ## Introduction
 
-> Small App implemented to not only test Experimental libraries like Recoil and Suspense React API, while offering a nice user experience.
+> Client side of the app
 
 ## Mainly used libraries
 
 | Library | Description |
 | --- | --- |
-| [Material UI](https://material-ui.com/) | Nicely styled and functional components |
-| [Recoil](https://recoiljs.org/) | Graph based state management library (experimental) |
-| [Jest](https://jestjs.io/) | For testing purposes |
+| [Redux](https://redux.js.org/) | State management library |
+| [Redux-saga](https://redux-saga.js.org/) | Declarative middleware for redux |
 | [Styled-components](https://styled-components.com/) | Styling with JS |
 | [Lodash](https://lodash.com/) | Utilities library |
-
-## Important notes
-
-### Redux vs Recoil
-
-Even thought Redux is a really reliable and as a community, React devs are always trying and developing new state and async data management libraries, for example we have unstated and apollo client for apps connected with graphQL, Recoil is a new experimental library from [facebook](https://github.com/facebookexperimental/Recoil) which was made to not only offer a more reacty way of handling state, but to also offer another paradigm different from single source of truth that Redux is, which is the graph based one.
-
-On production applications and on trade I use Redux and [Redux-saga](https://redux-saga.js.org/) as my bread and butter, and I think it is an extremely good and reliable combination, but for this test I will try using something different.
+| [Eslint](https://eslint.org/) | Javascript linter |
+| [Axios](https://github.com/axios/axios) | HTTP client |
+| [Typescript](https://www.typescriptlang.org/) | Typed javascript interface |
 
 ### Folder Structure
 
@@ -29,7 +23,6 @@ For this project I used a CSS and Component based architecture called [Atomic De
 ### Dependency manager
 
 NPM
-
 
 ## Available Scripts
 
