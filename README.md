@@ -10,7 +10,6 @@ To run this project locally you will need [Docker](https://www.docker.com/) and 
 
 - `docker-compose up --build --remove-orphans` or `docker-compose build` then `docker-compose up`
 - Server will be running at localhost:8080 and client at port localhost:3000
-- `linebreak-style: ["error", "windows"]` on the eslint client JSON is needed to develop in Windows
 
 ## Important notes
 
