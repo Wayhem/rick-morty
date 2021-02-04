@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound renders and matches snapshot 1`] = `
+<div>
+  <div
+    class="sc-bdfBwQ gslMLe"
+  >
+    <img
+      alt="it was him"
+      src="it_was_me__dio__by_gonthedinosaur_d7thhhs-fullview.png"
+    />
+    <div
+      class="sc-gsTCUz jFVCJg"
+    >
+      You thought you found /
+      , 
+      <span
+        class="sc-dlfnbm bjFDPA"
+      >
+        But it was me! DIO!
+      </span>
+    </div>
+  </div>
+</div>
+`;

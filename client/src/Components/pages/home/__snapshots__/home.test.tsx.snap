@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home renders and matches snapshot 1`] = `
+<div>
+  <div
+    class="sc-gsTCUz dAGyOL"
+  >
+    <button
+      class="sc-eCssSg flCiaF"
+    >
+      Log out
+    </button>
+    <div
+      class="sc-hKgILt jfFCxP"
+    >
+      <button
+        class="sc-eCssSg iOgwtR"
+        color="#647183"
+      >
+        Go to favorites
+      </button>
+    </div>
+    <div
+      class="sc-dlfnbm epLfUN"
+    >
+      Hello, 
+      
+    </div>
+  </div>
+  <div
+    class="sc-bdfBwQ lWayl"
+  />
+</div>
+`;

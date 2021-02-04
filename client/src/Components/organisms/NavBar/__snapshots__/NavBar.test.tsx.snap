@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavBar renders and matches snapshot 1`] = `
+<div>
+  <div
+    class="sc-bdfBwQ gFFhXP"
+  >
+    <button
+      class="sc-hKgILt geIEcq"
+    >
+      Log out
+    </button>
+    <div
+      class="sc-dlfnbm epLfUN"
+    >
+      <button
+        class="sc-hKgILt dtgEiG"
+        color="#647183"
+      >
+        Go to favorites
+      </button>
+    </div>
+    <div
+      class="sc-gsTCUz KDXhW"
+    >
+      Hello, 
+      
+    </div>
+  </div>
+</div>
+`;

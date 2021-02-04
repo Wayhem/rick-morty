@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Routes renders and matches snapshot 1`] = `
+<div>
+  <div
+    class="sc-bdfBwQ gslMLe"
+  >
+    <div
+      class="sc-jSgupP iDAwLf"
+    >
+      <form
+        autocomplete="off"
+        class="sc-jrAGrp bQeBPC"
+      >
+        <div
+          class="sc-iqHYGH glFaZH"
+        >
+          <div
+            class="sc-gKsewC jXmpdJ"
+          >
+            <div
+              class="sc-gsTCUz khJLZs"
+            >
+              <input
+                class="sc-dlfnbm tELdO"
+                id="emailInput"
+                placeholder="email"
+                required=""
+                type="email"
+                value=""
+              />
+              <label
+                for="emailInput"
+              >
+                Email
+              </label>
+            </div>
+          </div>
+          <div
+            class="sc-gKsewC jXmpdJ"
+          >
+            <div
+              class="sc-gsTCUz khJLZs"
+            >
+              <input
+                class="sc-dlfnbm kReXYC"
+                id="usernameInput"
+                placeholder="username"
+                required=""
+                type="text"
+                value=""
+              />
+              <label
+                for="usernameInput"
+              >
+                Username
+              </label>
+            </div>
+          </div>
+          <div
+            class="sc-gKsewC jXmpdJ"
+          >
+            <div
+              class="sc-gsTCUz khJLZs"
+            >
+              <input
+                class="sc-dlfnbm kReXYC"
+                id="passwordInput"
+                placeholder="password"
+                required=""
+                type="password"
+                value=""
+              />
+              <label
+                for="passwordInput"
+              >
+                Password
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          class="sc-pFZIQ fmHHoo"
+        >
+          <button
+            class="sc-hKgILt sc-fubCfw geIEcq"
+            type="button"
+          >
+            Clear
+          </button>
+          <button
+            class="sc-eCssSg sc-iBPRYJ hTuqml"
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+      <div
+        class="sc-pFZIQ hJgdOq"
+      >
+        <div
+          class="sc-kEjbxe hEgTGC"
+        >
+          Register
+        </div>
+        <div
+          class="sc-kEjbxe ksQVmt"
+        >
+          Login
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
