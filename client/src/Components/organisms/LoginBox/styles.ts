@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import styled from 'styled-components'
 import OutlinedButton from 'Components/atoms/outlinedButton'
 import StandardButton from 'Components/atoms/standardButton'

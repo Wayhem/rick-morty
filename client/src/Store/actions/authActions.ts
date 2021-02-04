@@ -13,5 +13,5 @@ export interface SingInAction extends SimpleAction {
 export const createUserAction = ({ username, password, email }: SignupPayload): SignUpAction =>
   simpleActionCreator(authTypes.SIGNUP, { username, password, email })
 
-export const loginUserAction = ({ email, password }: SigninPayload) =>
+export const loginUserAction = ({ email, password }: SigninPayload): SingInAction =>
   simpleActionCreator(authTypes.SIGNIN, { email, password })

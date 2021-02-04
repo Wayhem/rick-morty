@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const OutlinedButton = styled.button<any>`
   padding: 12px;
   color: ${props => props.color ? props.color : props.theme.colors.orange};

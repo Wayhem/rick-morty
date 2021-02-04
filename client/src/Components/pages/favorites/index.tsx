@@ -10,7 +10,7 @@ import Card from 'Components/molecules/CharacterCard'
 import { Character } from 'Models/charactersModels'
 import { State } from 'Store/state'
 
-const Home = () => {
+const Home = (): JSX.Element => {
   const dispatch = useDispatch()
   const characterList = useSelector<State, Character[]>((state: State) => state.characters.characterList)
   const favorites = useSelector<State, number[]>((state: State) => state.auth.favorites)

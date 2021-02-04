@@ -4,7 +4,7 @@ import { SimpleAction } from 'Store/actions'
 import authTypes from 'Store/types/authTypes'
 import * as Api from 'Services/api'
 
-export function* register(action: SimpleAction) {
+export function* register(action: SimpleAction): Generator {
   yield put({ type: authTypes.SIGNUP_PENDING })
 
   try {
@@ -15,7 +15,7 @@ export function* register(action: SimpleAction) {
   }
 }
 
-export function* logIn(action: SimpleAction) {
+export function* logIn(action: SimpleAction): Generator {
   yield put({ type: authTypes.SIGNIN_PENDING })
 
   try {
@@ -26,9 +26,9 @@ export function* logIn(action: SimpleAction) {
   }
 }
 
-export function* getProfile() {
+export function* getProfile(): Generator {
   const state = yield select()
-  const { token } = state.auth
+  const token = get(state, 'auth.token', '')
 
   if (token) {
     yield put({ type: authTypes.TOKEN_PENDING })
@@ -42,7 +42,7 @@ export function* getProfile() {
   }
 }
 
-export function* authenticate(action: SimpleAction) {
+export function* authenticate(action: SimpleAction): Generator {
   const token = get(action, 'payload.headers.auth-token', '')
   const username = get(action, 'payload.data.username', '')
   const email = get(action, 'payload.data.email', '')
@@ -55,7 +55,7 @@ export function* authenticate(action: SimpleAction) {
   }
 }
 
-export function* setFavorite(action: SimpleAction) {
+export function* setFavorite(action: SimpleAction): Generator {
   const favorite = action.payload
   try {
     const result = yield call(Api.setFavorite, { favorite })
@@ -65,7 +65,7 @@ export function* setFavorite(action: SimpleAction) {
   }
 }
 
-export function* authenticateWithoutTokenChange(action: SimpleAction) {
+export function* authenticateWithoutTokenChange(action: SimpleAction): Generator {
   const username = get(action, 'payload.data.username', '')
   const email = get(action, 'payload.data.email', '')
   const favorites = get(action, 'payload.data.favoritesIds', '')
@@ -73,7 +73,7 @@ export function* authenticateWithoutTokenChange(action: SimpleAction) {
   yield put({ type: authTypes.SET_PROFILE, payload: { email, username, favorites } })
 }
 
-function* watchToken() {
+function* watchToken(): Generator {
   yield takeEvery(authTypes.GET_TOKEN, getProfile)
   yield takeEvery(authTypes.SIGNUP, register)
   yield takeEvery(authTypes.SIGNIN, logIn)

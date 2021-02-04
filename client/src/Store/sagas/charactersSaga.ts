@@ -4,7 +4,7 @@ import charactersTypes from 'Store/types/charactersTypes'
 import * as Api from 'Services/api'
 import { SimpleAction } from 'Store/actions'
 
-export function* getCharacters(action: SimpleAction) {
+export function* getCharacters(action: SimpleAction): Generator {
   yield put({ type: charactersTypes.CHARACTERS_PENDING })
 
   const page = action.payload
@@ -18,7 +18,7 @@ export function* getCharacters(action: SimpleAction) {
   }
 }
 
-export function* getFavorites(action: SimpleAction) {
+export function* getFavorites(action: SimpleAction): Generator {
   yield put({ type: charactersTypes.CHARACTERS_PENDING })
 
   const ids = get(action, 'payload')
@@ -32,7 +32,7 @@ export function* getFavorites(action: SimpleAction) {
   }
 }
 
-export function* getCharacter(action: SimpleAction) {
+export function* getCharacter(action: SimpleAction): Generator {
   const id = action.payload
 
   try {
@@ -44,7 +44,7 @@ export function* getCharacter(action: SimpleAction) {
   }
 }
 
-function* watchCharacters() {
+function* watchCharacters(): Generator {
   yield takeEvery(charactersTypes.GET_CHARACTERS, getCharacters)
   yield takeEvery(charactersTypes.GET_CHARACTER, getCharacter)
   yield takeEvery(charactersTypes.GET_FAVORITES, getFavorites)

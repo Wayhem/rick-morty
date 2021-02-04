@@ -14,7 +14,7 @@ import { simpleActionCreator } from 'Store/actions'
 import authTypes from 'Store/types/authTypes'
 import { setHeaderToken } from 'Services/api'
 
-const Routes = () => {
+const Routes = (): JSX.Element => {
   const dispatch = useDispatch()
   const token = useSelector<State, string>((state: State) => state.auth.token)
 

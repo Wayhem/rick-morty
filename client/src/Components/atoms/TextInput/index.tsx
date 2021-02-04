@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { SyntheticEvent } from 'react'
 import { TextInput, TextInputContainer } from 'Components/atoms/TextInput/styles'
 import { positionShift } from 'Config/constants/inputLabelShift'
 
@@ -11,10 +11,10 @@ interface InputProps {
   type?: string;
   required?: boolean | undefined;
   disabled?: boolean | undefined;
-  onChange(e: any): void;
+  onChange(e: SyntheticEvent): void;
 }
 
-const Input = ({ onChange, placeholder, label, inputId, value, labelShift, type, required, disabled }: InputProps) => {
+const Input = ({ onChange, placeholder, label, inputId, value, labelShift, type, required, disabled }: InputProps): JSX.Element => {
   const getCoordinates = (position: positionShift | undefined): { coordinateX: string; coordinateY: string } => {
     switch (position) {
       case positionShift.up:

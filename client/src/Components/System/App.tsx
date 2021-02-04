@@ -13,7 +13,7 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 // TODO: style error boundary
 // TODO: react-i18next
 
-const App = () => (
+const App = (): JSX.Element => (
   <>
     <GlobalStyle />
     <Provider store={store}>

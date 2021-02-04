@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import styled, { keyframes } from 'styled-components'
 
 export const Box = styled.div`

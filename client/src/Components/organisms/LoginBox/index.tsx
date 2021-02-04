@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, SyntheticEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTheme } from 'styled-components'
 import Loader from 'react-loader-spinner'
@@ -27,12 +27,12 @@ interface LoginField {
   id: string;
   value: string;
   type: string;
-  setValue: Function;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
   shift?: positionShift;
   required?: boolean;
 }
 
-const LoginBox = () => {
+const LoginBox = (): JSX.Element => {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -49,7 +49,7 @@ const LoginBox = () => {
     setPassword('')
   }
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault()
     if (formSelected === formTypes.register) dispatch(createUserAction({ username, password, email }))
     if (formSelected === formTypes.login) dispatch(loginUserAction({ email, password }))
@@ -64,7 +64,7 @@ const LoginBox = () => {
   const fieldsToRendered = formSelected === formTypes.register
     ? [emailField, usernameField, passwordField] : [emailField, passwordField]
 
-  const renderFormButton = (type: formTypes, label: string, borderRight: string = 'none') => {
+  const renderFormButton = (type: formTypes, label: string, borderRight = 'none') => {
     const isSelected = type === formSelected
 
     return (
@@ -96,7 +96,7 @@ const LoginBox = () => {
         inputId={id}
         value={value}
         type={type}
-        onChange={e => setValue(e.target.value)}
+        onChange={e => setValue((e.target as HTMLInputElement).value)}
         required={required}
         labelShift={shift}
         disabled={isPending}

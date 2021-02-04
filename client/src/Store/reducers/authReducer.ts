@@ -19,7 +19,7 @@ const initialState: AuthState = {
   favorites: []
 }
 
-const reducer = (state = initialState, action: AnyAction) => {
+const reducer = (state = initialState, action: AnyAction): AuthState => {
   switch (action.type) {
     case authTypes.TOKEN_SUCCESS:
       return {

@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-// import { useTheme } from 'styled-components'
-// import Loader from 'react-loader-spinner'
 import charactersTypes from 'Store/types/charactersTypes'
 import { Container } from 'Components/pages/home/styles'
 import Navbar from 'Components/organisms/NavBar'
@@ -9,7 +7,7 @@ import Card from 'Components/molecules/CharacterCard'
 import { Character } from 'Models/charactersModels'
 import { State } from 'Store/state'
 
-const Home = () => {
+const Home = (): JSX.Element => {
   const [charactersToShow, setCharactersToShow] = useState<Character[]>([])
   const [pageNum, setPageNum] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
@@ -31,7 +29,6 @@ const Home = () => {
   const dispatch = useDispatch()
   const characterList = useSelector<State, Character[]>((state: State) => state.characters.characterList)
   const charactersLoading = useSelector<State, boolean>((state: State) => state.characters.charactersLoading)
-  // const theme = useTheme()
 
   useEffect(() => {
     dispatch({ type: charactersTypes.GET_CHARACTERS, payload: pageNum })

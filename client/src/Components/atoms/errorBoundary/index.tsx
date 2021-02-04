@@ -1,8 +1,8 @@
 import { Component } from 'react'
 
 interface Props {
-  fallback: Function | Object;
-  children: Function | Object;
+  fallback: JSX.Element;
+  children: JSX.Element;
 }
 
 interface State {
@@ -16,14 +16,14 @@ class ErrorBoundary extends Component<Props, State> {
     this.state = { hasError: false }
   }
 
-  static getDerivedStateFromError(error: Error) {
+  static getDerivedStateFromError(error: Error):{ hasError: boolean; error: Error; } {
     return {
       hasError: true,
       error,
     }
   }
 
-  render() {
+  render(): JSX.Element {
     const { hasError } = this.state
     const { fallback, children } = this.props
     if (hasError) {

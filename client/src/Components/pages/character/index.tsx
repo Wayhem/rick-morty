@@ -24,7 +24,7 @@ import { State } from 'Store/state'
 import authTypes from 'Store/types/authTypes'
 import { Character } from 'Models/charactersModels'
 
-const CharacterPage = () => {
+const CharacterPage = (): JSX.Element => {
   const params = useParams<{ id: string; }>()
   const dispatch = useDispatch()
 

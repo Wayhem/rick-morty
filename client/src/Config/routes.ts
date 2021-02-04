@@ -3,7 +3,7 @@ const routes = {
   login: '/login',
   favorites: '/favorites',
   character: '/character/:id',
-  buildCharacter: (id: string | number) => `/character/${id}`
+  buildCharacter: (id: string | number): string => `/character/${id}`
 }
 
 export default routes

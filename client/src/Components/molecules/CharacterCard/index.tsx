@@ -24,6 +24,7 @@ import authTypes from 'Store/types/authTypes'
 import { State } from 'Store/state'
 
 interface CharacterProps extends CharacterI {
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   refProp: ((node: any) => void) | null;
 }
 
@@ -38,7 +39,7 @@ const Character = ({
   image,
   location,
   refProp
-}: CharacterProps) => {
+}: CharacterProps): JSX.Element => {
   const [isLoaded, setIsLoaded] = useState(false)
   const [isLoadingFavorites, setIsLoadingFavorites] = useState(false)
   const dispatch = useDispatch()

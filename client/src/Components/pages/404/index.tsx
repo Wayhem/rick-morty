@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import Image from 'Assets/images/it_was_me__dio__by_gonthedinosaur_d7thhhs-fullview.png'
 import { Container, Box, Dio } from 'Components/pages/404/styles'
 
-const NotFound = () => {
+const NotFound = (): JSX.Element => {
   const location = useLocation()
 
   return (

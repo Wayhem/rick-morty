@@ -14,7 +14,7 @@ const initialState: CharactersState = {
   currentCharacter: {}
 }
 
-const reducer = (state = initialState, action: AnyAction) => {
+const reducer = (state = initialState, action: AnyAction): CharactersState => {
   switch (action.type) {
     case characterTypes.CHARACTERS_SUCCESS:
       return { ...state, characterList: action.payload, charactersLoading: false }

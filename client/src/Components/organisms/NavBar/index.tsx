@@ -8,7 +8,7 @@ import routes from 'Config/routes'
 import authTypes from 'Store/types/authTypes'
 import { State } from 'Store/state'
 
-const NavBar = () => {
+const NavBar = (): JSX.Element => {
   const dispatch = useDispatch()
   const theme = useTheme()
   const location = useLocation()
