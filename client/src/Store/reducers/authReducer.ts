@@ -31,6 +31,15 @@ const reducer = (state = initialState, action: AnyAction) => {
         loginPagePending: false,
         isLoggedIn: true
       }
+    case authTypes.SET_PROFILE:
+      return {
+        ...state,
+        username: action.payload.username,
+        email: action.payload.email,
+        favorites: action.payload.favorites,
+        loginPagePending: false,
+        isLoggedIn: true
+      }
     case authTypes.TOKEN_PENDING:
     case authTypes.SIGNIN_PENDING:
     case authTypes.SIGNUP_PENDING:

@@ -16,7 +16,7 @@ declare global {
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['auth']
+  blacklist: ['auth', 'characters']
 }
 
 const sagaMiddleware = createSagaMiddleware()

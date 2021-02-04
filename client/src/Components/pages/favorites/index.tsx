@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { isEmpty } from 'lodash'
 import { useTheme } from 'styled-components'
 import Loader from 'react-loader-spinner'
 import charactersTypes from 'Store/types/charactersTypes'
@@ -12,12 +13,15 @@ import { State } from 'Store/state'
 const Home = () => {
   const dispatch = useDispatch()
   const characterList = useSelector<State, Character[]>((state: State) => state.characters.characterList)
+  const favorites = useSelector<State, number[]>((state: State) => state.auth.favorites)
   const charactersLoading = useSelector<State, boolean>((state: State) => state.characters.charactersLoading)
   const theme = useTheme()
 
+  const payload = isEmpty(favorites) ? '' : favorites
+
   useEffect(() => {
-    dispatch({ type: charactersTypes.GET_CHARACTERS })
-  }, [dispatch])
+    dispatch({ type: charactersTypes.GET_FAVORITES, payload })
+  }, [dispatch, payload])
 
   return (
     <>

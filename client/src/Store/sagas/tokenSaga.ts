@@ -65,13 +65,22 @@ export function* setFavorite(action: SimpleAction) {
   }
 }
 
+export function* authenticateWithoutTokenChange(action: SimpleAction) {
+  const username = get(action, 'payload.data.username', '')
+  const email = get(action, 'payload.data.email', '')
+  const favorites = get(action, 'payload.data.favoritesIds', '')
+
+  yield put({ type: authTypes.SET_PROFILE, payload: { email, username, favorites } })
+}
+
 function* watchToken() {
   yield takeEvery(authTypes.GET_TOKEN, getProfile)
   yield takeEvery(authTypes.SIGNUP, register)
   yield takeEvery(authTypes.SIGNIN, logIn)
   yield takeEvery(authTypes.SET_FAVORITE, setFavorite)
   yield takeLatest(authTypes.GET_PROFILE, getProfile)
-  yield takeLatest([authTypes.SIGNIN_SUCCESS, authTypes.SIGNUP_SUCCESS, authTypes.PROFILE_SUCCESS], authenticate)
+  yield takeLatest([authTypes.SIGNIN_SUCCESS, authTypes.SIGNUP_SUCCESS], authenticate)
+  yield takeLatest([authTypes.PROFILE_SUCCESS], authenticateWithoutTokenChange)
 }
 
 export default watchToken

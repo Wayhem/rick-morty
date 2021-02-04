@@ -9,6 +9,7 @@ export const Box = styled.div`
   width: 30%;
   margin: 2rem 0;
   position: relative;
+  max-height: 210px;
 
   @media (max-width: 1024px) {
     width: 45%;
@@ -48,7 +49,7 @@ const Skeleton = styled.div`
 `
 
 export const ImageSkeleton = styled(Skeleton)`
-  height: 195px;
+  height: 210px;
   width: 35%;
   border-radius: 4px 0 0 4px;
 `
