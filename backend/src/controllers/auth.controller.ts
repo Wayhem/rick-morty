@@ -85,3 +85,44 @@ export const profile = async (req: Request, res: Response) => {
     email,
   })
 }
+
+export const saveFavorite = async (req: Request, res: Response) => {
+  try {
+    const user: UserI = await User.findOne({ _id: req.userId })
+    if (!user) res.status(404).json('User not found')
+
+    const favorites = new Set(user.favoritesIds)
+    
+    if (favorites.has(req.body.favorite)) {
+      const filteredFavorites = user.favoritesIds.filter(id => id !== req.body.favorite)
+      user.favoritesIds = filteredFavorites
+    } else {
+      user.favoritesIds.push(req.body.favorite)
+    }
+
+    const savedUser = await user.save()
+
+    const token = jwt.sign({ _id: savedUser._id }, config.SECRET_KEY, {
+      expiresIn: 60 * 60 * 48
+    })
+    
+    const {
+      favoritesIds,
+      _id,
+      username,
+      email,
+    } = savedUser
+  
+    res.header(AUTH_TOKEN_KEY, token).json({
+      favoritesIds,
+      _id,
+      username,
+      email,
+    })
+  } catch(e) {
+    res.status(400).send({
+      success: false,
+      error: e.message
+    });
+  }
+}

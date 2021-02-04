@@ -7,6 +7,7 @@ export interface AuthState {
   isLoggedIn: boolean;
   username: string;
   email: string;
+  favorites: number[];
 }
 
 const initialState: AuthState = {
@@ -14,7 +15,8 @@ const initialState: AuthState = {
   loginPagePending: false,
   isLoggedIn: false,
   username: '',
-  email: ''
+  email: '',
+  favorites: []
 }
 
 const reducer = (state = initialState, action: AnyAction) => {
@@ -25,6 +27,7 @@ const reducer = (state = initialState, action: AnyAction) => {
         token: action.payload.token,
         username: action.payload.username,
         email: action.payload.email,
+        favorites: action.payload.favorites,
         loginPagePending: false,
         isLoggedIn: true
       }
@@ -45,7 +48,8 @@ const reducer = (state = initialState, action: AnyAction) => {
         isLoggedIn: false,
         token: '',
         username: '',
-        email: ''
+        email: '',
+        favorites: []
       }
     default:
       return state

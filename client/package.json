@@ -12,6 +12,8 @@
     "test-cli": "CI=true react-scripts test --env=jsdom --maxWorkers=2"
   },
   "dependencies": {
+    "@styled-icons/fa-regular": "^10.26.0",
+    "@styled-icons/fa-solid": "^10.26.0",
     "axios": "^0.21.1",
     "history": "^5.0.0",
     "husky": "^4.3.8",

@@ -4,7 +4,8 @@ const urls = {
   Identifier: '/:id',
   Signup: '/signup',
   Signin: '/signin',
-  Profile: '/profile'
+  Profile: '/profile',
+  Favorites: '/favorites'
 }
 
 export default urls

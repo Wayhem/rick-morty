@@ -6,3 +6,7 @@ export interface SigninPayload {
 export interface SignupPayload extends SigninPayload {
   username: string;
 }
+
+export interface FavoritePayload {
+  favorite: number;
+}

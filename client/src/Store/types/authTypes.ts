@@ -13,7 +13,8 @@ const authTypes = {
   SIGNIN: 'SIGNIN',
   GET_PROFILE: 'GET_PROFILE',
   PROFILE_SUCCESS: 'PROFILE_SUCCESS',
-  LOGOUT: 'LOGOUT'
+  LOGOUT: 'LOGOUT',
+  SET_FAVORITE: 'SET_FAVORITE'
 }
 
 export default authTypes

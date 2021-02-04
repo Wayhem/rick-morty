@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container } from 'Components/pages/home/styles'
+import { Container } from 'Components/pages/login/styles'
 import LoginBox from 'Components/organisms/LoginBox'
 
 const Login = () => (

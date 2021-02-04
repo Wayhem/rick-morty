@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { SignupPayload, SigninPayload } from 'Models/authModels'
+import { SignupPayload, SigninPayload, FavoritePayload } from 'Models/authModels'
 
 const BASE_URL = 'http://localhost:8080'
 
@@ -10,3 +10,5 @@ export const setHeaderToken = (token: string): void => {
 export const SignUp = (payload: SignupPayload) => axios.post(`${BASE_URL}/signup`, payload)
 export const SignIn = (payload: SigninPayload) => axios.post(`${BASE_URL}/signin`, payload)
 export const Profile = () => axios.get(`${BASE_URL}/profile`)
+export const getCharacters = () => axios.get(`${BASE_URL}/character`)
+export const setFavorite = (payload: FavoritePayload) => axios.post(`${BASE_URL}/favorites`, payload)
