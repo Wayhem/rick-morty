@@ -26,7 +26,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <Container loading={charactersLoading}>
+      <Container isLoading={charactersLoading}>
         {charactersLoading ? (
           <Loader
             type='Circles'
@@ -56,6 +56,7 @@ const Home = () => {
             origin={origin}
             location={location}
             image={image}
+            refProp={null}
           />
         ))}
       </Container>

@@ -93,11 +93,12 @@ export const saveFavorite = async (req: Request, res: Response) => {
 
     const favorites = new Set(user.favoritesIds)
     
-    if (favorites.has(req.body.favorite)) {
-      const filteredFavorites = user.favoritesIds.filter(id => id !== req.body.favorite)
-      user.favoritesIds = filteredFavorites
+    if (favorites.has(parseInt(req.body.favorite))) {
+      favorites.delete(parseInt(req.body.favorite))
+      user.favoritesIds = [...favorites]
     } else {
-      user.favoritesIds.push(req.body.favorite)
+      favorites.add(parseInt(req.body.favorite))
+      user.favoritesIds = [...favorites]
     }
 
     const savedUser = await user.save()

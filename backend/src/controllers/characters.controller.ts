@@ -4,8 +4,13 @@ import config from '../config'
 import urls from '../constants/urls'
 
 export const getCharacters: RequestHandler = (req, res) => {
-  const { ids } = req.query
-  const requestQuery = ids ? JSON.stringify(ids) : ''
+  const { ids, page } = req.query
+  let requestQuery = ''
+  if (ids) {
+    requestQuery = JSON.stringify(ids)
+  } else if (page) {
+    requestQuery = `?page=${page}`
+  }
   return request(`${config.BASE_URL}${urls.Characters}/${requestQuery}`, (err, response, body) => {
     if(err){
       res.status(400).send({

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, SyntheticEvent } from 'react'
 import { get } from 'lodash'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import { useTheme } from 'styled-components'
 import { Heart } from '@styled-icons/fa-regular'
@@ -17,9 +18,14 @@ import {
   FieldsContainer,
   FavoriteButton
 } from 'Components/molecules/CharacterCard/styles'
+import routes from 'Config/routes'
 import { Character as CharacterI } from 'Models/charactersModels'
 import authTypes from 'Store/types/authTypes'
 import { State } from 'Store/state'
+
+interface CharacterProps extends CharacterI {
+  refProp: ((node: any) => void) | null;
+}
 
 const Character = ({
   id,
@@ -30,12 +36,14 @@ const Character = ({
   gender,
   origin,
   image,
-  location
-}: CharacterI) => {
+  location,
+  refProp
+}: CharacterProps) => {
   const [isLoaded, setIsLoaded] = useState(false)
   const [isLoadingFavorites, setIsLoadingFavorites] = useState(false)
   const dispatch = useDispatch()
   const theme = useTheme()
+  const history = useHistory()
   const favoritesArray = useSelector<State, number[]>(state => state.auth.favorites)
   const favoritesSet = new Set(favoritesArray)
 
@@ -45,7 +53,8 @@ const Character = ({
     setIsLoadingFavorites(false)
   }, [isFavorite])
 
-  const setFavorite = () => {
+  const setFavorite = (e: SyntheticEvent) => {
+    e.stopPropagation()
     dispatch({ type: authTypes.SET_FAVORITE, payload: id })
     setIsLoadingFavorites(true)
   }
@@ -61,11 +70,13 @@ const Character = ({
   const locationName = get(location, 'name', '')
   const originName = get(origin, 'name', '')
 
+  const goToCharacter = () => history.push(routes.buildCharacter(id))
+
   const renderHeart = () => isFavorite
     ? <SolidHeart size={19} color={theme.colors.orange} /> : <Heart size={19} />
 
   return (
-    <Box>
+    <Box ref={refProp} onClick={goToCharacter}>
       {!isLoaded && <ImageSkeleton />}
       <Image src={image} onLoad={handleLoading} display={isLoaded ? 'block' : 'none'} />
       <TextContainer>

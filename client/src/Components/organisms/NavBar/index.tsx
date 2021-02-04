@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useHistory } from 'react-router-dom'
 import { useTheme } from 'styled-components'
-import { Bar, Username } from 'Components/organisms/NavBar/styles'
+import { Bar, Username, Spacer } from 'Components/organisms/NavBar/styles'
 import OutlinedButton from 'Components/atoms/outlinedButton'
 import routes from 'Config/routes'
 import authTypes from 'Store/types/authTypes'
@@ -23,22 +23,24 @@ const NavBar = () => {
   return (
     <Bar>
       <OutlinedButton onClick={logout}>Log out</OutlinedButton>
-      {location.pathname !== routes.favorites && (
-        <OutlinedButton
-          color={theme.colors.lighterDarkBlue}
-          onClick={goToFavorites}
-        >
-          Go to favorites
-        </OutlinedButton>
-      )}
-      {location.pathname !== routes.home && (
-        <OutlinedButton
-          color={theme.colors.lighterDarkBlue}
-          onClick={goHome}
-        >
-          Go to characters list
-        </OutlinedButton>
-      )}
+      <Spacer>
+        {location.pathname !== routes.favorites && (
+          <OutlinedButton
+            color={theme.colors.lighterDarkBlue}
+            onClick={goToFavorites}
+          >
+            Go to favorites
+          </OutlinedButton>
+        )}
+        {location.pathname !== routes.home && (
+          <OutlinedButton
+            color={theme.colors.lighterDarkBlue}
+            onClick={goHome}
+          >
+            Go to characters list
+          </OutlinedButton>
+        )}
+      </Spacer>
       <Username>Hello, {username}</Username>
     </Bar>
   )

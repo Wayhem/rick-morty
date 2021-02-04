@@ -21,3 +21,8 @@ export const Username = styled.div`
   color: ${props => props.theme.colors.darkBlue};
   margin-right: 1rem;
 `
+
+export const Spacer = styled.div`
+  color: ${props => props.theme.colors.darkBlue};
+  margin-right: 1rem;
+`

@@ -7,6 +7,7 @@ import LoginRoute from 'Components/System/routes/LoginRoute'
 import Login from 'Components/pages/login'
 import Home from 'Components/pages/home'
 import Favorites from 'Components/pages/favorites'
+import Character from 'Components/pages/character'
 import NotFound from 'Components/pages/404'
 import { State } from 'Store/state'
 import { simpleActionCreator } from 'Store/actions'
@@ -34,6 +35,9 @@ const Routes = () => {
       </PrivateRoute>
       <PrivateRoute path={routes.favorites} exact>
         <Favorites />
+      </PrivateRoute>
+      <PrivateRoute path={routes.character}>
+        <Character />
       </PrivateRoute>
       <Route component={NotFound} />
     </Switch>

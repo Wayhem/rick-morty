@@ -5,24 +5,11 @@ export const Box = styled.div`
   border-radius: 4px;
   display: flex;
   background-color: ${props => props.theme.colors.lighterDarkBlue};
-  max-width: 600px;
-  width: 30%;
+  width: 90%;
   margin: 2rem 0;
   position: relative;
-  max-height: 210px;
   cursor: pointer;
-
-  @media (max-width: 1600px) {
-    width: 45%;
-  }
-
-  @media (max-width: 1200px) {
-    width: 80%;
-  }
-
-  @media (max-width: 700px) {
-    width: 100%;
-  }
+  margin: 3rem auto;
 `
 
 export const Image = styled.img<any>`
@@ -62,7 +49,6 @@ export const ImageSkeleton = styled(Skeleton)`
 export const TextContainer = styled.div`
   padding: 0.5rem 1rem;
   color: ${props => props.theme.colors.white};
-  max-height: 210px;
   overflow-y: scroll;
   width: 65%;
   display: flex;

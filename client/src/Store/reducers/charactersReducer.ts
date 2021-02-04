@@ -5,11 +5,13 @@ import { Character } from 'Models/charactersModels'
 export interface CharactersState {
   characterList: Character[];
   charactersLoading: boolean;
+  currentCharacter: Partial<Character>;
 }
 
 const initialState: CharactersState = {
   characterList: [],
-  charactersLoading: false
+  charactersLoading: false,
+  currentCharacter: {}
 }
 
 const reducer = (state = initialState, action: AnyAction) => {
@@ -20,6 +22,8 @@ const reducer = (state = initialState, action: AnyAction) => {
       return { ...state, charactersLoading: false }
     case characterTypes.CHARACTERS_PENDING:
       return { ...state, charactersLoading: true }
+    case characterTypes.CHARACTER_SUCCESS:
+      return { ...state, currentCharacter: action.payload }
     default:
       return state
   }
