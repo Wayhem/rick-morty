@@ -8,7 +8,7 @@
 
 To run this project locally you will need [Docker](https://www.docker.com/) and [docker-compose](https://docs.docker.com/compose/install/) installed on your machine. After that just run:
 
-- `docker-compose up --build --remove-orphans` or -`docker-compose build` then `docker-compose up`
+- `docker-compose up --build --remove-orphans` or `docker-compose build` then `docker-compose up`
 
 ## Important notes
 
